@@ -108,12 +108,14 @@
 		padding: .25rem;
 	}
 	.ind-item{
-		width: 315px;
+		/* width: 315px; */
+		width: 95%;
+		margin: auto;
 		padding: 1.5rem;
 	}
 	.item-img{
 		width: 125px;
-		margin-right: 1rem;
+		margin-right: 3rem;
 	}
 	.right-one input{
 		width: 50px;
@@ -134,5 +136,8 @@
 	}
 	.name-col{
 		width: 140px;
+	}
+	.item-img{
+		margin-right: 1rem;
 	}
 }

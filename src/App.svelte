@@ -4,7 +4,7 @@
 	import { langObj, itemObj } from './stores/store';
 	import html2canvas from 'html2canvas';
 
-	const link="https://todopomo.netlify.app",
+	const link="https://cgkomalik.netlify.app/",
 		fbLink=`https://facebook.com/share.php?u=${link}`,
 		twitterLink=`https://twitter.com/share?url=${link}`,
 		linkedinLink=`https://linkedin.com/sharing/share-offsite/?url=${link}`,
@@ -89,10 +89,39 @@
 
 		if(numInStr.length<=3) return numInStr;
 		else{
-			// return numInStr.
+			switch(numInStr.length){
+				case 4:
+					return numInStr.substring(0,1)+","+numInStr.substring(1,numInStr.length);
+					break;
+				case 5:
+					return numInStr.substring(0,2)+","+numInStr.substring(2,numInStr.length);
+					break;
+				case 6:
+					return numInStr.substring(0,1)+","+numInStr.substring(1,3)+","+numInStr.substring(3,numInStr.length);
+					break;
+				case 7:
+					return numInStr.substring(0,2)+","+numInStr.substring(2,4)+","+numInStr.substring(4,numInStr.length);
+					break;
+				case 8:
+					return numInStr.substring(0,1)+","+numInStr.substring(1,3)+","+numInStr.substring(3,5)+","+numInStr.substring(5,numInStr.length);
+					break;
+				case 9:
+					return numInStr.substring(0,2)+","+numInStr.substring(2,4)+","+numInStr.substring(4,6)+","+numInStr.substring(6,numInStr.length);
+					break;
+				case 10:
+					return numInStr.substring(0,1)+","+numInStr.substring(1,3)+","+numInStr.substring(3,5)+","+numInStr.substring(5,7)+","+numInStr.substring(7,numInStr.length);
+					break;
+				case 11:
+					return numInStr.substring(0,2)+","+numInStr.substring(2,4)+","+numInStr.substring(4,6)+","+numInStr.substring(6,8)+","+numInStr.substring(8,numInStr.length);
+					break;
+				case 12:
+					return numInStr.substring(0,1)+","+numInStr.substring(1,3)+","+numInStr.substring(3,5)+","+numInStr.substring(5,7)+","+numInStr.substring(7,9)+","+numInStr.substring(9,numInStr.length);
+					break;
+				default: 
+					return numInStr;
+			}
 		}
 	}
-	insertCommas(123)
 
 	const calculateCartItemCount=()=>{
 		cartItemCount=0;
@@ -148,7 +177,7 @@
 					</div>
 					<div class="right-two">
 						<div class="item-title">{lang=="en"?item.enName:item.npName}</div>
-						<div class="item-price">{lang=="en"?langData.rupees.en:langData.rupees.np} <span>{item.price}</span></div>
+						<div class="item-price">{lang=="en"?langData.rupees.en:langData.rupees.np} <span>{insertCommas(item.price)}</span></div>
 					</div>
 				</div>
 			</div>
@@ -167,7 +196,7 @@
 		{/if}
 	</div>
 	<div class="money-section">
-		{lang=="en"?langData.rupees.en:langData.rupees.np} <span class="item-money-num">{totalMoney}</span>
+		{lang=="en"?langData.rupees.en:langData.rupees.np} <span class="item-money-num">{insertCommas(totalMoney)}</span>
 	</div>
 </div>
 
@@ -191,26 +220,25 @@
 	{#each itemData as item}
 	{#if item.ordered>0}
 		<div class="ind-cart-item">
-			<div class="cart-item-name name-col">{item.npName}</div>
+			<div class="cart-item-name name-col">{lang=="en"?item.enName:item.npName}</div>
 			<div class="ind-cart-item-right">
 				<div class="cart-item-count unit-col">{item.ordered}</div>
-				<div class="cart-item-total total-col">{lang=="en"?langData.rupees.en:langData.rupees.np} {item.price * item.ordered}</div>
+				<div class="cart-item-total total-col">{lang=="en"?langData.rupees.en:langData.rupees.np}{insertCommas(item.price * item.ordered)}</div>
 			</div>
 		</div>
 	{/if}
 	{/each}
-	{#if cartItemCount>0}
-		<div class="cart-total">
-			<div class="overall-total-txt name-col">{lang=="en"?langData.total.en:langData.total.np}</div>
-			<div class="overall-total total-col">{lang=="en"?langData.rupees.en:langData.rupees.np} {cartMoney}</div>
-		</div>
-	{/if}
+	<div class="cart-total">
+		<div class="overall-total-txt name-col">{lang=="en"?langData.total.en:langData.total.np}</div>
+		<div class="overall-total total-col">{lang=="en"?langData.rupees.en:langData.rupees.np} {insertCommas(cartMoney)}</div>
+	</div>
 	<div class="cart-last">
 		<div class="italic">* {lang=="en"?langData.refundable.en:langData.refundable.np}</div>
 		<div class="cart-share italic">
 			<i class="fa-solid fa-download" on:click={downloadBill}></i>
 		</div>
 	</div>
+	<img class="cart-bg" src="./imgs/binod-chaudhary-1.png" alt="binod chaudhary"/>
 </div>
 {/if}
 
