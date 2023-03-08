@@ -56,6 +56,14 @@ export const langObj = writable({
     "refundable": {
         "en": "Not refundable",
         "np": "फिर्ता योग्य छैन"
+    },
+    "feedbackText": {
+        "en": "I would love to hear your feedback",
+        "np": "म तपाइँको प्रतिक्रिया सुन्न चाहन्छु"
+    },
+    "feedback": {
+        "en": "feedback",
+        "np": "प्रतिक्रिया"
     }
 });
 

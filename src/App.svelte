@@ -13,7 +13,7 @@
 	let totalMoney=118692357000, 
 		cartMoney= 0,
 		cartItemCount= 0,
-		lang="en",
+		lang=window.localStorage.getItem("lang")?window.localStorage.getItem("lang"):"en",
 		langData={},
 		itemData=[],
 		billNo=Math.floor(Math.random()*12345)+10000,
@@ -30,6 +30,11 @@
 				itemData[j+1]=temp;
 			}
 		}
+	}
+
+	const changeLang=language=>{
+		lang=language;
+		window.localStorage.setItem("lang",lang);
 	}
 	
 	const handlePlus=index=>{
@@ -142,6 +147,8 @@
 			anchor.click();
 		});
     }
+
+	// console.log(window.localStorage.getItem("lang"));
 </script>
 
 <div class="header">
@@ -153,8 +160,8 @@
 		<img src="./imgs/binod-chaudhary-1.png" alt="">
 	</div>
 	<div class="lang-section">
-		<button class={lang=="en"?"en curr-lang":"en"} on:click={()=>lang="en"}>EN</button>
-		<button class={lang=="np"?"np curr-lang":"np"} on:click={()=>lang="np"}>NP</button>
+		<button class={lang=="en"?"en curr-lang":"en"} on:click={()=>changeLang("en")}>EN</button>
+		<button class={lang=="np"?"np curr-lang":"np"} on:click={()=>changeLang("np")}>NP</button>
 	</div>
 </div>
 
@@ -269,5 +276,6 @@
 	<div class="credit">
 		<p>{lang=="en"?langData.createdBy.en:langData.createdBy.np} <a href="https://www.linkedin.com/in/rubekk/" target="_blank">{lang=="en"?langData.creator.en:langData.creator.np}</a></p>
 		<p>{lang=="en"?langData.inspiredBy.en:langData.inspiredBy.np} <a href="https://www.neal.fun/spend" target="_blank">{lang=="en"?langData.inspiror.en:langData.inspiror.np}</a></p>
+		<p>{lang=="en"?langData.feedbackText.en:langData.feedbackText.np}  <a href="https://forms.gle/8T4fZvb2Hi3ox95X8" target="_blank">{lang=="en"?langData.feedback.en:langData.feedback.np}</a></p>
 	</div>
 </div>
